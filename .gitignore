@@ -1,0 +1,6 @@
+/.git
+/.vagrant
+/files/ssh/*
+/settings.yaml
+/vagrant_cmd.bat
+/workbench.txt
