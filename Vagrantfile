@@ -7,14 +7,19 @@
 # you're doing.
 VAGRANTFILE_API_VERSION = "2"
 
+# Get Settings
+require 'yaml'
+settings = YAML::load(File.read("settings.yaml"))
+
+# Make settings local.
 # Virtualbox files
-SRC_FILE = "C:/Users/holth/VirtualBox VMs/andrastea/box-disk1.vmdk"
-VB_FILE = "F:/VirtualBox/VM/andrastea.vdi"
+SRC_FILE = settings['src_file']
+VB_FILE = settings['vb_file']
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    
+
   config.vm.box = "ubuntu/trusty64"
-  config.vm.box_check_update = true
+  config.vm.box_check_update = settings['check_update'] # true
   config.vm.hostname = "andrastea.equinox"
   config.vm.network "public_network", ip: "192.168.178.113"
   config.vm.network "private_network", ip: "192.168.57.113"
